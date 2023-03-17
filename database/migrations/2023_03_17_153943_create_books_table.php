@@ -18,16 +18,21 @@ return new class extends Migration
             $table->string('isbn');
             $table->string('location');
             $table->integer('pages');
-            $table->longString('content');
+            $table->string('content');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('location_id');
             $table->unsignedBigInteger('collection_id');
             $table->unsignedBigInteger('status_id');
+            $table->foreign('category_id')
+            ->references('id')->on('categories')
+            ->onDelete('cascade');
+            $table->foreign('collection_id')
+            ->references('id')->on('collections');
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascad');
 
             $table->timestamps();
-        });
-    }
+    });
+}
 
     /**
      * Reverse the migrations.
