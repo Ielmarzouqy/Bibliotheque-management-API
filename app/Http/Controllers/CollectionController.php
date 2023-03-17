@@ -19,5 +19,11 @@ class CollectionController extends Controller
         $data = Collection::create($request->all());
         return response()->json(['data'=>'created successfuly', 'collection'=>$data], 201);
     }
+    public function update( Request $request, $id){
+        $collection_to_update = Collection::findOrFail($id);
+        $collection_to_update->update($request->all());
+        
+        return $collection_to_update;
+    }
    
 }
