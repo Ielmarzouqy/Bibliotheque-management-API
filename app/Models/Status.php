@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Status extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'status'
+    ];
     public function book(){
         return $this->hasMany(Book::class);
          }
