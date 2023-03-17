@@ -3,64 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreCollectionRequest;
 use App\Http\Requests\UpdateCollectionRequest;
 
 class CollectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        $collection = Collection::all();
+        return  response()->json(['request'=>'success','all collections'=>$collection],200);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    
+    public function store (Request $request){
+    
+        $data = Collection::create($request->all());
+        return response()->json(['data'=>'created successfuly', 'collection'=>$data], 201);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCollectionRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Collection $collection)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Collection $collection)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCollectionRequest $request, Collection $collection)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Collection $collection)
-    {
-        //
-    }
+   
 }
