@@ -15,7 +15,8 @@ public function index(){
 
 public function store (Request $request){
 
-  
+    $data = Category::create($request->all());
+    return response()->json(['data'=>'created successfuly', 'category'=>$data], 201);
 }
 public function update(){
 
