@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Status;
 use App\Http\Requests\StoreStatusRequest;
 use App\Http\Requests\UpdateStatusRequest;
+use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {
@@ -21,28 +22,21 @@ class StatusController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreStatusRequest $request)
+    public function store(Request $request)
     {
-        //
+        $status = Status::create($request->all());
+        return response()->json(['request'=>'created successfuly','status'=>$status], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Status $status)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Status $status)
     {
-        //
+        
     }
 
     /**
