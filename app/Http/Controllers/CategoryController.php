@@ -18,8 +18,11 @@ public function store (Request $request){
     $data = Category::create($request->all());
     return response()->json(['data'=>'created successfuly', 'category'=>$data], 201);
 }
-public function update(){
-
+public function update( Request $request, $id){
+    $category_to_update = Category::findOrFail($id);
+    $category_to_update->update($request->all());
+    
+    return $category_to_update;
 }
 public function destroy(){
 
