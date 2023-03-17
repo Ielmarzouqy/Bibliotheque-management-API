@@ -31,7 +31,11 @@ class StatusController extends Controller
 
     public function show(Status $status)
     {
-        
+        $status->find($status->id);
+        if (!$status) {
+            return response()->json(['message' => 'Article not found'], 404);
+        }
+        return response()->json($status, 200);
     }
 
     public function edit(Status $status)
@@ -39,12 +43,10 @@ class StatusController extends Controller
         
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(UpdateStatusRequest $request, Status $status)
     {
-        //
+    
     }
 
     /**
@@ -52,6 +54,6 @@ class StatusController extends Controller
      */
     public function destroy(Status $status)
     {
-        //
+        
     }
 }
