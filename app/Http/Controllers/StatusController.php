@@ -8,20 +8,17 @@ use App\Http\Requests\UpdateStatusRequest;
 
 class StatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $status = Status::all();
+        return response()->json(['request'=>'success', 'Status'=>$status], 201);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+ 
     public function create()
     {
-        //
+        
     }
 
     /**
