@@ -17,7 +17,7 @@ class CollectionController extends Controller
     public function store (Request $request){
     
         $data = Collection::create($request->all());
-        return response()->json(['data'=>'created successfuly', 'collection'=>$data], 201);
+        return response()->json(['collection'=>'created successfuly', 'collection'=>$data], 201);
     }
     public function update( Request $request, $id){
         $collection_to_update = Collection::findOrFail($id);
@@ -25,5 +25,12 @@ class CollectionController extends Controller
         
         return $collection_to_update;
     }
-   
+    public function destroy( Collection $collection){
+        $collection->delete();
+            
+        return response()->json([
+            'status' => true,
+            'message' => 'collection deleted successfully'
+        ], 200);
+    }
 }
