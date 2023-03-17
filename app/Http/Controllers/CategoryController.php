@@ -24,7 +24,12 @@ public function update( Request $request, $id){
     
     return $category_to_update;
 }
-public function destroy(){
-
+public function destroy( Category $category){
+    $category->delete();
+        
+    return response()->json([
+        'status' => true,
+        'message' => 'Category deleted successfully'
+    ], 200);
 }
 }
