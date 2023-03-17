@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+   
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login','register']]);
@@ -26,10 +27,12 @@ class AuthController extends Controller
 
         return $this->respondWithToken($token);
     }
+
     public function me()
     {
         return response()->json(auth()->user());
     }
+
     public function logout()
     {
         auth()->logout();
@@ -38,7 +41,29 @@ class AuthController extends Controller
     }
 
 
-    
+     public function register(){
+        
+
+        try{
+            request()->validate([
+                'name' => 'required',
+                'email' => 'required|unique:users',
+                'password' => 'required|confirmed|min:6'
+            ]);
+
+            $user = new User;
+            $user->name = request('name');
+            $user->email = request('email');
+            $user->password =Hash::make(request('password'));
+            $user->save();
+        }catch(Exception $e){
+            return response()->json(['error' => $e->getMessage()]);
+        }
+        
+        return response()->json(['success' => 'account has been created successfully']);
+     }
+
+
     
   
 }
