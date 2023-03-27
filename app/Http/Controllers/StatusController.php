@@ -33,27 +33,26 @@ class StatusController extends Controller
     {
         $status->find($status->id);
         if (!$status) {
-            return response()->json(['message' => 'Article not found'], 404);
+            return response()->json(['message' => 'status not found'], 404);
         }
         return response()->json($status, 200);
     }
 
-    public function edit(Status $status)
-    {
-        
-    }
-
    
-    public function update(UpdateStatusRequest $request, Status $status)
-    {
     
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Status $status)
-    {
+   
+    public function update( Request $request, $id){
+        $status_to_update = Status::findOrFail($id);
+        $status_to_update->update($request->all());
         
+        return $status_to_update;
+    }
+    public function destroy( Status $status){
+        $status->delete();
+            
+        return response()->json([
+            'status' => true,
+            'message' => 'status deleted successfully'
+        ], 200);
     }
 }

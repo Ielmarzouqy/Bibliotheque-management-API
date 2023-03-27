@@ -12,6 +12,6 @@ class Category extends Model
         'name',
     ];
     public function books(){
-        return $this->belongsToMany(Book::class,'categories_books', 'category_id', 'book_id') ;
+        return $this->hasOne(Book::class) ;
     }
 }

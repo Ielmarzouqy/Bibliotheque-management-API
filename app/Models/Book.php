@@ -9,11 +9,11 @@ class Book extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title','author','isbn','location','pages','content','category_id','user_id','collection_id','status_id'
+        'title','author','isbn','location','pages','content','category_id','collection_id','status_id','user_id'
     ];
 
     public function category(){
-        return $this->belongsToMany(Category::class,'categories_articles', 'book_id','category_id');
+        return $this->belongsTo(Category::class);
     }
 
     public function collection(){
@@ -23,4 +23,10 @@ class Book extends Model
     public function status(){
         return $this->belongsTo(Status::class);
     }
+
+  
+     public function user(){
+         return $this->belongsTo(User::class);
+     }
+   
 }

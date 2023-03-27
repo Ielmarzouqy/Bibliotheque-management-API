@@ -11,8 +11,8 @@ class Collection extends Model
     protected $fillable = [
         'label'
     ];
-    public function collection(){
-        return $this->hasMany(Collection::class);
+    public function book(){
+        return $this->hasOne(Book::class);
 
     }
 }
