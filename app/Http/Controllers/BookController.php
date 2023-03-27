@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use Symfony\Component\VarDumper\Caster\StubCaster;
 
 class BookController extends Controller
 {
@@ -69,6 +70,10 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return response()->json([
+            'status'=>'delet',
+            'message'=>'deleted seuccessfully'
+        ], 200);
     }
 }
