@@ -56,9 +56,12 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBookRequest $request, Book $book)
+    public function update(UpdateBookRequest $request, $id)
     {
-        //
+        $book_to_update = Book::findOrFail($id);
+        $book_to_update->update($request->all());
+
+        return response()->json(['statue'=>'update', 'book updated successfully'=>$book_to_update]);
     }
 
     /**
