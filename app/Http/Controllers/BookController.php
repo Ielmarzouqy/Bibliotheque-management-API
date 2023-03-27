@@ -13,7 +13,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return response()->json([
+            'status'=>'success',
+            'All books'=>$books]);
     }
 
     /**
@@ -29,7 +32,8 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        //
+
+        
     }
 
     /**
