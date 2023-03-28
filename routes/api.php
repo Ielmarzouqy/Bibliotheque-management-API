@@ -13,7 +13,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('category',CategoryController::class);
+
 
 Route::group([
 
@@ -27,8 +27,12 @@ Route::group([
     Route::post('logout', [AuthController::class,'logout']);
     Route::post('refresh', [AuthController::class,'refresh']);
     Route::post('me', [AuthController::class,'me']);
+
+    Route::resource('category',CategoryController::class);
+  });
+  Route::prefix('admin')->middleware(['api','auth', 'isAdmin'])->group(function(){
+    Route::resource('/book', BookController::class); 
+
   });
   Route::resource('/collection', CollectionController::class);
   Route::resource('/status', StatusController::class);
-
-  Route::resource('/book', BookController::class);
