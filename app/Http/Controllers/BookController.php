@@ -9,9 +9,11 @@ use Symfony\Component\VarDumper\Caster\StubCaster;
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware(['auth:api','isAdmin'],['except'=>'index']);
+    }
+    
     public function index()
     {
         $books = Book::all();

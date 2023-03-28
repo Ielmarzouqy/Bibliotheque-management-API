@@ -16,17 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
-            if(Auth::user()->role == '2'){
-                    return $next($request);
-            }else{
-                return redirect('/')->with('message', 'this is menu of bistro of morocco');
-            }
-        }else{
-            return redirect('login')->with('message', 'you sould login first');
-        }
-        // return $next($request);
-    
-        return $next($request);
+        if(Auth::user()->role === 1)
+            return $next($request);
+        else
+            return response()->json(['message'=>'unauthorazed to access to this route']); 
     }
 }
