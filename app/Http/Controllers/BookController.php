@@ -29,9 +29,6 @@ class BookController extends Controller
         return response()->json(['sttaus'=>'success', 'book'=>$book],201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Book $book)
     {
         $book->findOrFail($book->id);

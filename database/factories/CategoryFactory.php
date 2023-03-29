@@ -19,6 +19,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name'=>Str::random(10),
+            
         ];
     }
 }

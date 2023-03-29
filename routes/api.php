@@ -8,6 +8,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\UserController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -34,4 +35,7 @@ Route::group([
     ], function ($router) {
     Route::post('register', [AuthController::class,'register']);
     Route::post('login', [AuthController::class,'login']);
+    Route::get('profile/{id}',[UserController::class,'show']);
+    Route::put('profile/{id}', [UserController::class, 'update']);
+    
     });
